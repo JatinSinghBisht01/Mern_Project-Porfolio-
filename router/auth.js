@@ -95,7 +95,7 @@ router.post("/register", (req, res)=>{
               foundUser.save();
                // I am confuse what are you trying to do here, in your place I would set up on the cookie since you do that on your authentification.
                res.cookie("jwt", token, {
-                maxAge: 3600000,  // 1 hour for testing(1000 is factor)
+                maxAge: 600000,  // 10 minutes for testing(1000 is factor)
                 httpOnly: true,
                 sameSite: false,  //false only for dev
                 secure: false,   //false only for dev
