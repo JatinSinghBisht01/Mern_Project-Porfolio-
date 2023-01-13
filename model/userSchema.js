@@ -70,6 +70,7 @@ userSchema.methods.addMessage = async function (name, email, phone, message) {
     }
 }
 
+
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;

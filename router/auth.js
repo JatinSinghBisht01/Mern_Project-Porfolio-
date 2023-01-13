@@ -95,7 +95,7 @@ router.post("/register", (req, res)=>{
               foundUser.save();
                // I am confuse what are you trying to do here, in your place I would set up on the cookie since you do that on your authentification.
                res.cookie("jwt", token, {
-                maxAge: 600000,  // 10 minutes for testing(1000 is factor)
+                maxAge: 3600000,  // 1 hour for testing(1000 is factor)
                 httpOnly: true,
                 sameSite: false,  //false only for dev
                 secure: false,   //false only for dev
@@ -119,7 +119,7 @@ router.post("/register", (req, res)=>{
   });
 
   router.get("/getdata", Authenticate, function (req, res) {
-    console.log("getting data from contact page");
+    console.log("getting data");
     res.send(req.user);
   });
 
@@ -137,10 +137,36 @@ router.post("/register", (req, res)=>{
         res.status(201).json({message:"Message shared successfully"});
       }
     } catch (error) {
-      
+      console.log(error);
     }
   });
 
+  //edit page
+  router.get("/edit", Authenticate, function (req, res) {
+    console.log("edit running");
+    res.send(req.user);
+  });
+
+  router.post("/edit", Authenticate, async(req, res) =>{
+    try {
+      const {name, phone, work} = req.body;
+      console.log("edit req running");
+      if(!name || !work || !phone){
+        console.log("error in edit form");
+        return res.json({error: "plz fill all details"})
+      }
+      const userEdit =  await User.findByIdAndUpdate({_id: req.userID}, {$set:{name, phone, work}});
+      if(userEdit){
+        // const updatedProfile = await userEdit.updatedProfile()
+        await userEdit.save();
+        res.status(201).json({message: "Profile edited successfully"});
+
+      }
+      
+    } catch (error) {
+      console.log(error);
+    }
+  })
 
   
 
