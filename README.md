@@ -5,4 +5,4 @@ Functionality :-
         They can see their profile in profile section
         They can edit their profile
         They can save their message and to whom it is addressing.
-Link to live server : https://mern-project-portfolio.onrender.com
+Link to live server :https://portfolio-yq6t.onrender.com
