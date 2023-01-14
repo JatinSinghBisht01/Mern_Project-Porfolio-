@@ -1,4 +1,8 @@
 # Mern_Project-Porfolio-
 This is a Profile making type project I made while following Thapa Technicals.
-Functionality : User can register themselves and their details then it will be displayed to them on their profile.
+Functionality :-
+        User can register themselves and their details
+        They can see their profile in profile section
+        They can edit their profile
+        They can save their message and to whom it is addressing.
 Link to live server : https://mern-project-portfolio.onrender.com
