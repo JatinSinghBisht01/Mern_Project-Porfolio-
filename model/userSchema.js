@@ -61,7 +61,7 @@ const userSchema = new mongoose.Schema({
 
 //storing message
 userSchema.methods.addMessage = async function (name, email, phone, message) {
-    try {
+    try { 
         this.messages = this.messages.concat({name, email, phone, message});
         await this.save();
         return this.messages;
