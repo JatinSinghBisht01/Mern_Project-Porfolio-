@@ -46,7 +46,7 @@ router.post("/register", (req, res)=>{
                 { user_id: newUser._id, email },
                 process.env.TOKEN_KEY,
                 {
-                  expiresIn: "10h",
+                  expiresIn: "720h",
                 
                 }
               );
@@ -80,7 +80,7 @@ router.post("/register", (req, res)=>{
                   if(result){
                     return res.json({message: "successfully log in"})
                   }else{
-                    return res.json({message: "incorrect password"});
+                    return res.status(400).json({message: "incorrect password"});
                   }
               });
               const email = req.body.email;
@@ -88,14 +88,14 @@ router.post("/register", (req, res)=>{
                 { user_id: foundUser._id, email },
                 process.env.TOKEN_KEY,
                 {
-                  expiresIn: "10h",
+                  expiresIn: "720h",
                 }
               );
               foundUser.tokens = foundUser.tokens.concat({token: token});
               foundUser.save();
                // I am confuse what are you trying to do here, in your place I would set up on the cookie since you do that on your authentification.
                res.cookie("jwt", token, {
-                maxAge: 300000,  // 5 mins for testing(1000 is factor)
+                maxAge: 600000,  // 10 mins for testing(1000 is factor)
                 httpOnly: true,
                 sameSite: false,  //false only for dev
                 secure: false,   //false only for dev
